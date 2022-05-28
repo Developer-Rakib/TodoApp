@@ -21,7 +21,6 @@ function App() {
             <Todo></Todo>
           </RequireAuth>
         }></Route>
-
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signUp' element={<SignUp></SignUp>}></Route>
       </Routes>
