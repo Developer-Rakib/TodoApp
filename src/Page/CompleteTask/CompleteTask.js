@@ -1,10 +1,11 @@
 import React from 'react';
+import CompleteTodo from '../Todo/CompleteTodo';
 
 const CompleteTask = () => {
     return (
-        <div>
-            this is complete task
-        </div>
+        <div className='w-full'>
+                <CompleteTodo></CompleteTodo>
+            </div>
     );
 };
 

@@ -7,18 +7,18 @@ const Todo = () => {
     const handleTodo = (e) => {
         e.preventDefault()
         const todo = e.target.todo.value
-        const description = e.target.description.value
+        // const description = e.target.description.value
         if (todo === "") {
-            toast.error("Please Enter Todo")
+            toast.error("Please Enter Task")
             return
         }
-        if (description === "") {
-            toast.error("Please Enter Desctiption")
-            return
-        }
+        // if (description === "") {
+        //     toast.error("Please Enter Desctiption")
+        //     return
+        // }
         const todoInfo = {
             todo,
-            description
+            // description
         }
         console.log(todoInfo);
         axios.post(`https://intense-sierra-15615.herokuapp.com/todo`, todoInfo)
@@ -40,7 +40,7 @@ const Todo = () => {
                                 name='todo'
                                 type="text" className="form-control mb-3 relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Enter Todo" aria-label="Search" aria-describedby="button-addon2"
                             />
-                            <div className="flex justify-center">
+                            {/* <div className="flex justify-center">
                                 <div className="mb-3 xl:w-96">
                                     <textarea
                                         name='description'
@@ -66,7 +66,7 @@ const Todo = () => {
                                         placeholder="Enter Description"
                                     ></textarea>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <button
 
