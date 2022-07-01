@@ -24,7 +24,7 @@ const TodoItems = ({ todo, todos, setTodos, index }) => {
             todo
         }  
         // console.log(upTodo, id);
-        axios.put(`http://localhost:5000/todoEdit/${id}`, upTodo)
+        axios.put(`https://intense-sierra-15615.herokuapp.com/todoEdit/${id}`, upTodo)
             .then(data => {
                 // console.log(data.data);
                 if (data.data.acknowledged === true) {

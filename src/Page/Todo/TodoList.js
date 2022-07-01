@@ -6,7 +6,7 @@ import TodoItems from './TodoItems';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([])
-    const [enbleEdit, setEnbleEdit] = useState(false)
+    // const [enbleEdit, setEnbleEdit] = useState(false)
     // let [loadin, setLoading] = useState(true);
     // const navigate = useNavigate()
     // window.scroll(0, 10)
@@ -21,56 +21,6 @@ const TodoList = () => {
             })
     }, [todos])
 
-    const handleComplete = (id, todo) => {
-        axios.put(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
-            .then(data => {
-                // console.log(data.data);
-                if (data.data.modifiedCount === 1) {
-                    toast.success(`Succesfully complete ${todo}`)
-                }
-
-            })
-    }
-    const handleEdit = (id, todo) => {
-        axios.put(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
-            .then(data => {
-                // console.log(data.data);
-                if (data.data.modifiedCount === 1) {
-                    toast.success(`Succesfully complete ${todo}`)
-                }
-
-            })
-    }
-    const handleDelete = (id) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
-                    .then(data => {
-                        if (data.data.modifiedCount === 1) {
-                            let restTodo = todos.filter(cloth => cloth._id !== id)
-                            setTodos(restTodo)
-                            toast.success(data.data.message)
-                        }
-
-                    })
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }
-        })
-
-
-    }
 
 
     return (
@@ -85,7 +35,7 @@ const TodoList = () => {
 
                             </th>
                             <th scope="col" className=" sm:px-6 py-2 sm:py-3">
-                                Name
+                                Task
                             </th>
                             {/* <th scope="col" className=" sm:px-6 py-2 sm:py-3">
                                 Desciption
