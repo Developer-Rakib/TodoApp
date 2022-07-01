@@ -22,19 +22,19 @@ const TodoItems = ({ todo, todos, setTodos, index }) => {
         const todo =  e.target.upTodo.value
         const upTodo = {
             todo
-        } 
-            
+        }  
         // console.log(upTodo, id);
-        axios.put(`http://localhost:5000/todo/${id}`, upTodo)
+        axios.put(`http://localhost:5000/todoEdit/${id}`, upTodo)
             .then(data => {
                 // console.log(data.data);
                 if (data.data.acknowledged === true) {
                     setEnbleEdit(false)
                     toast.success(`Succesfully Edited ${todo}`)
                 }
-
             })
     }
+
+    
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
