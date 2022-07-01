@@ -22,51 +22,11 @@ const CompleteTodo = () => {
             })
     }, [todos])
 
-    // const handleComplete = (id, todo) => {
-    //     axios.put(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
-    //         .then(data => {
-    //             console.log(data.data);
-    //             if (data.data.modifiedCount === 1) {
-    //                 toast.success(`Succesfully complete ${todo}`)
-    //             }
-
-    //         })
-    // }
-    // const handleDelete = (id) => {
-    //     Swal.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes, delete it!'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             axios.delete(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
-    //                 .then(data => {
-    //                     if (data.data.modifiedCount === 1) {
-    //                         let restTodo = todos.filter(cloth => cloth._id !== id)
-    //                         setTodos(restTodo)
-    //                         toast.success(data.data.message)
-    //                     }
-
-    //                 })
-    //             Swal.fire(
-    //                 'Deleted!',
-    //                 'Your file has been deleted.',
-    //                 'success'
-    //             )
-    //         }
-    //     })
-
-
-    // }
 
 
     return (
         <div>
-            <div className="relative w-5/12  mx-auto my-7 overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="relative w-10/12 sm:w-5/12  mx-auto my-7 overflow-x-auto shadow-md sm:rounded-lg">
 
                 <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -103,16 +63,10 @@ const CompleteTodo = () => {
                                                     :
                                                     todo.todo}
                                             </td>
-                                            {/* <td className="px-2 sm:px-5 py-3 text-xs sm:text-sm font-semibold sm:font-bold">
-                                                {todo?.description}
-                                            </td> */}
                                             <td className="px-2 flex  justify-center sm:px-5 py-3 text-center">
 
                                             <p className='text-green-600 font-semibold flex items-center mr-2'>Task Completed</p>
                                                
-                                                {/* <button type="button"
-                                                    onClick={() => handleDelete(todo?._id)}
-                                                    className="inline-block px-2.5  sm:px-6 py-1.5 sm:py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Delete</button> */}
 
                                             </td>
                                         </tr>

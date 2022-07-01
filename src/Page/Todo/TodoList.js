@@ -25,7 +25,7 @@ const TodoList = () => {
 
     return (
         <div>
-            <div className="relative w-8/12  mx-auto my-7 overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="relative w-11/12 sm:w-8/12  mx-auto my-7 overflow-x-auto shadow-md sm:rounded-lg">
 
                 <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
