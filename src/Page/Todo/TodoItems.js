@@ -2,27 +2,30 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import {AiOutlineEdit} from 'react-icons/ai';
+import { AiOutlineEdit } from 'react-icons/ai';
 
 const TodoItems = ({ todo, todos, setTodos, index }) => {
     const [enbleEdit, setEnbleEdit] = useState(false)
 
-    const handleComplete = (id, todo) => {
+    const handleComplete = (e, id, todo) => {
         axios.put(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
             .then(data => {
                 // console.log(data.data);
                 if (data.data.modifiedCount === 1) {
                     toast.success(`Succesfully complete ${todo}`)
+                    e.target.checked = false;
+                    // console.log(e.target.checked);
+
                 }
 
             })
     }
     const handleEdit = (e, id) => {
         e.preventDefault()
-        const todo =  e.target.upTodo.value
+        const todo = e.target.upTodo.value
         const upTodo = {
             todo
-        }  
+        }
         // console.log(upTodo, id);
         axios.put(`https://intense-sierra-15615.herokuapp.com/todoEdit/${id}`, upTodo)
             .then(data => {
@@ -33,8 +36,9 @@ const TodoItems = ({ todo, todos, setTodos, index }) => {
                 }
             })
     }
+    // window.addEventListener("click",() => setEnbleEdit(false))
 
-    
+
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -70,11 +74,11 @@ const TodoItems = ({ todo, todos, setTodos, index }) => {
         <tr
             className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th scope="row" className="px-2 sm:px-5 py-3  dark:text-white whitespace-nowrap">
-                {index + 1}
+                <input onClick={(e) => handleComplete(e, todo?._id, todo?.todo)} type="checkbox" name="" id="" />
             </th>
             <td className="px-2 sm:px-5 py-3 text-xs sm:text-sm font-semibold sm:font-bold">
                 {enbleEdit ?
-                    <form className='' onSubmit={(r) => handleEdit(r, todo?._id)}>
+                    <form className='' onSubmit={(e) => handleEdit(e, todo?._id)}>
                         <input
                             name='upTodo'
                             className='sm:h-8 h-6 sm:px-4 px-1 w-20 sm:mb-0 mb-2 sm:w-auto rounded-md border border-gray-500 focus:border-green-500'
@@ -89,8 +93,8 @@ const TodoItems = ({ todo, todos, setTodos, index }) => {
                         <button type="button"
                             onClick={() => setEnbleEdit(true)}
                             className="inline-block ml-2 text-black  font-medium text-base hover:text-blue-500 leading-tight">
-                                <AiOutlineEdit></AiOutlineEdit>
-                            </button>
+                            <AiOutlineEdit></AiOutlineEdit>
+                        </button>
                     </>}
             </td>
             {/* <td className="px-2 sm:px-5 py-3 text-xs sm:text-sm font-semibold sm:font-bold">
