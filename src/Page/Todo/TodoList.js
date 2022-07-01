@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
+import TodoItems from './TodoItems';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([])
+    const [enbleEdit, setEnbleEdit] = useState(false)
     // let [loadin, setLoading] = useState(true);
     // const navigate = useNavigate()
     // window.scroll(0, 10)
@@ -20,6 +22,16 @@ const TodoList = () => {
     }, [todos])
 
     const handleComplete = (id, todo) => {
+        axios.put(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
+            .then(data => {
+                // console.log(data.data);
+                if (data.data.modifiedCount === 1) {
+                    toast.success(`Succesfully complete ${todo}`)
+                }
+
+            })
+    }
+    const handleEdit = (id, todo) => {
         axios.put(`https://intense-sierra-15615.herokuapp.com/todo/${id}`)
             .then(data => {
                 // console.log(data.data);
@@ -88,34 +100,17 @@ const TodoList = () => {
                         {
                             todos.length > 0 ?
                                 todos.map((todo, i) => {
-                                    return (
-                                        <tr key={todo._id}
-                                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                            <th scope="row" className="px-2 sm:px-5 py-3  dark:text-white whitespace-nowrap">
-                                                {i + 1}
-                                            </th>
-                                            <td className="px-2 sm:px-5 py-3 text-xs sm:text-sm font-semibold sm:font-bold">
-                                                {todo.complete === "done" ?
-                                                    <s>{todo.todo}</s>
-                                                    :
-                                                    todo.todo}
-                                            </td>
-                                            {/* <td className="px-2 sm:px-5 py-3 text-xs sm:text-sm font-semibold sm:font-bold">
-                                                {todo?.description}
-                                            </td> */}
-                                            <td className="px-2 flex  justify-center sm:px-5 py-3 text-center">
-                                            <button type="button"
-                                                                onClick={() => handleComplete(todo?._id, todo?.todo)}
-                                                                className="inline-block mr-2 px-2.5  sm:px-6 py-1.5 sm:py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Complete</button>
-                                                
-                                                <button type="button"
-                                                    onClick={() => handleDelete(todo?._id)}
-                                                    className="inline-block px-2.5  sm:px-6 py-1.5 sm:py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Delete</button>
-
-                                            </td>
-                                        </tr>
+                                    return ( 
+                                        <TodoItems 
+                                        key={i}
+                                        index={i}
+                                        todo={todo}
+                                        todos={todos}
+                                        setTodos={setTodos}
+                                        ></TodoItems>
                                     );
-                                })
+                                }
+                                )
                                 :
                                 <p className='py-3'>Data Not Available</p>
                         }
